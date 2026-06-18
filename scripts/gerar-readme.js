@@ -53,11 +53,9 @@ a.nome.localeCompare(b.nome, "pt-BR")
 );
 
 let tabela = `
-
 | Avatar | Nome | GitHub | Cidade | LinkedIn |
-| ------ | ---- | ------ | ------ | -------- |
-|        |      |        |        |          |`
-;
+|---------|---------|---------|---------|---------|
+`;
 
 for (const aluno of alunosFiltrados) {
 
