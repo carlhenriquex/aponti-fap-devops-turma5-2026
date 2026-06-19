@@ -21,6 +21,7 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 | Avatar | Nome | GitHub | Cidade | LinkedIn |
 |---------|---------|---------|---------|---------|
 | <img src="https://github.com/carlhenriquex.png" width="50"> | Carlos Henrique | [@carlhenriquex](https://github.com/carlhenriquex) | São Lourenço da Mata | [Perfil](https://linkedin.com/in/carloshenriquex) |
+| <img src="https://github.com/danilloheber.png" width="50"> | Danillo Heber | [@danilloheber](https://github.com/danilloheber) | Recife | [Perfil](https://linkedin.com/in/danilloheber) |
 | <img src="https://github.com/DiegoSouzaTech.png" width="50"> | Diego Kauã | [@DiegoSouzaTech](https://github.com/DiegoSouzaTech) | Recife-PE | [Perfil](https://www.linkedin.com/in/diego-souza-411bb8359/) |
 | <img src="https://github.com/ellenyass.png" width="50"> | Ellen Nunes | [@ellenyass](https://github.com/ellenyass) | Olinda | [Perfil](https://www.linkedin.com/in/ellen-nunes-40b6b524a/) |
 | <img src="https://github.com/fililpe.png" width="50"> | Filipe Sousa | [@fililpe](https://github.com/fililpe) | Recife | [Perfil](https://linkedin.com/in/luizfilipesousa) |
@@ -42,7 +43,7 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 ## Estatísticas
 
 <!-- ESTATISTICAS-INICIO -->
-Total de alunos cadastrados: 16
+Total de alunos cadastrados: 17
 
 Última atualização: 19/06/2026, 23:16
 
