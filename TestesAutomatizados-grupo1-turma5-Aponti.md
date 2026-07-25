@@ -84,10 +84,14 @@ O Node encontra sozinho o arquivo `tests/gerar-readme.test.js` (ele já segue o 
 ## Entregáveis
 
 - [ ] Arquivos de teste no repositório (`tests/gerar-readme.test.js`)
-- [ ] Script ajustado (`scripts/gerar-readme.js`)
+- [x] Script ajustado (`scripts/gerar-readme.js`)
 - [ ] Pull Request aberto para o repositório principal da turma
-- [ ] Esta documentação preenchida
+- [x] Esta documentação preenchida
 - [ ] Slides para a apresentação (10 min, 2 integrantes)
+
+### Possíveis melhorias futuras
+
+- Validação real de `github` e `linkedin` via status **HTTP**: foi levantada a ideia de, além de checar se os campos `github` e `linkedin` existem no JSON, verificar se esses links realmente funcionam (ex: pegar erros de digitação no usuário do Github, que hoje geram um link quebrado sem que o script perceba). É uma verificação que agrega qualidade real ao projeto, então vale considerar para uma próxima etapa. Por depender de acesso a internet e a serviços externos, esse tipo de checagem costuma ficar melhor separada da suíte principal (que hoje roda rápido sem depender de rede), assim ela pode ser feito sob demanda, sem risco de travar ou atrasar a pipeline CI/CD por instabilidade externa. Fica como sugestão registrada para quando o grupo tiver espaço para evoluir os testes.
 
 ## Colaboradores
  
