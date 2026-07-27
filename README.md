@@ -34,9 +34,10 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 | <img src="https://github.com/leonard0antonio.png" width="50"> | Leonardo Antonio | [@leonard0antonio](https://github.com/leonard0antonio) | Camaragibe | [Perfil](https://www.linkedin.com/in/leonardo-a-a063b519b/) |
 | <img src="https://github.com/LucasEmmanoel06.png" width="50"> | Lucas Emmanoel | [@LucasEmmanoel06](https://github.com/LucasEmmanoel06) | Recife | [Perfil](https://linkedin.com/in/lucasemalbuquerque) |
 | <img src="https://github.com/lucas-henriquedias.png" width="50"> | Lucas Henrique Dias de Medeiros | [@lucas-henriquedias](https://github.com/lucas-henriquedias) | Jaboatão dos Guararapes | [Perfil](https://www.linkedin.com/in/lucas-henrique-dias-345666346/) |
-| <img src="https://github.com/https://github.com/LucasMadureiro.png" width="50"> | Lucas Madureiro | [@https://github.com/LucasMadureiro](https://github.com/https://github.com/LucasMadureiro) | Paulista | [Perfil](https://www.linkedin.com/in/lucas-madureiro-matias-6946a8277/) |
+| <img src="https://github.com/LucasMadureiro.png" width="50"> | Lucas Madureiro | [@LucasMadureiro](https://github.com/LucasMadureiro) | Paulista | [Perfil](https://www.linkedin.com/in/lucas-madureiro-matias-6946a8277/) |
 | <img src="https://github.com/felipeGTBR.png" width="50"> | Luiz Felipe | [@felipeGTBR](https://github.com/felipeGTBR) | Jaboatão | [Perfil](https://linkedin.com/in/luiz-felipe-ti) |
-| <img src="https://github.com/miltonmaglhaesv.png" width="50"> | Milton Magalhães | [@miltonmaglhaesv](https://github.com/miltonmaglhaesv) | Recife | [Perfil](https://linkedin.com/in/miltonmagalhaesv) |
+| <img src="https://github.com/Mariana-ASM.png" width="50"> | Mariana Monteiro | [@Mariana-ASM](https://github.com/Mariana-ASM) | Recife | [Perfil](https://linkedin.com/in/mariana-asm-tec) |
+| <img src="https://github.com/miltonmagalhaesv.png" width="50"> | Milton Magalhães | [@miltonmagalhaesv](https://github.com/miltonmagalhaesv) | Recife | [Perfil](https://linkedin.com/in/miltonmagalhaesv) |
 | <img src="https://github.com/miqueias-eduardo.png" width="50"> | Miqueias Eduardo | [@miqueias-eduardo](https://github.com/miqueias-eduardo) | Jaboatão dos Guararapes | [Perfil](https://www.linkedin.com/in/miqueias-eduardo) |
 | <img src="https://github.com/nk-medeiros.png" width="50"> | Nayara Karla Medeiros da Silva | [@nk-medeiros](https://github.com/nk-medeiros) | Jaboatão dos Guararapes | - |
 | <img src="https://github.com/nhsneto.png" width="50"> | Nelson Neto | [@nhsneto](https://github.com/nhsneto) | Paulista | [Perfil](https://linkedin.com/in/nhsneto) |
@@ -54,8 +55,8 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 ## Estatísticas
 
 <!-- ESTATISTICAS-INICIO -->
-Total de alunos cadastrados: 28
+Total de alunos cadastrados: 29
 
-Última atualização: 24/07/2026, 20:10
+Última atualização: 26/07/2026, 10:24
 
 <!-- ESTATISTICAS-FIM -->
