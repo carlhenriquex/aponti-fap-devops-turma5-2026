@@ -94,7 +94,15 @@ O Node encontra sozinho o arquivo `tests/gerar-readme.test.js` (ele já segue o 
 
 >Observações sobre mensagens que aparecem no terminal durante a execução (não são falhas):
 > - `Erro ao ler quebrado.json: Expected...` - é o próprio script avisando, via `console.log`, que ignorou um arquivo JSON malformado (comportamento esperado do T08).
-> - `README atualizado com sucesso.` (pode aparecer mais de uma vez) - é o log de sucesso da função `atualizarReadme`; confirmado com `git status` que nenhum teste alterou o `README.md` real do projeto, então é só saída do log, sem efeito colateral. 
+> - `README atualizado com sucesso.` (pode aparecer mais de uma vez) - é o log de sucesso da função `atualizarReadme`; confirmado com `git status` que nenhum teste alterou o `README.md` real do projeto, então é só saída do log, sem efeito colateral.
+
+### Análise dos resultados
+ 
+Os 10 testes passaram sem nenhuma falha, o que indica que o script cobre corretamente todas as regras de negócio identificadas na Parte 1: validação de campos obrigatórios, remoção de duplicados (inclusive com diferença de maiúsculas/minúsculas), ordenação alfabética, filtro de extensão de arquivo, tolerância a JSON malformado e tratamento de erro quando a pasta não existe.
+ 
+A suíte combina três níveis de confiança diferentes: os Smoke Tests confirmam que o fluxo completo funciona de ponta a ponta (inclusive no caso extremo de pasta sem nenhum aluno válido); os testes de Sanidade isolam cada regra individualmente, facilitando apontar exatamente qual comportamento quebrou caso algum teste falhe no futuro; e os testes de Regressão, ao combinar múltiplas condições em um mesmo cenário, dão segurança de que mudanças futuras no script (como as feitas para acomodar a refatoração em funções menores) não reintroduzem bugs já corrigidos.
+ 
+Não foram identificadas falhas, instabilidades (os mesmos 10 testes passaram de forma consistente em execuções repetidas) ou testes lentos, a suíte inteira roda em menos de 1 segundo, o que a torna adequada para ser incorporada a uma pipeline de CI/CD sem impacto perceptível no tempo de build. A principal lacuna identificada não está nos testes em si, mas no que o script valida: como registrado em "Possíveis melhorias futuras", o projeto hoje confirma que os campos `github`/`linkedin` existem, mas não que os valores realmente apontam para perfis/links válidos.   
 
 ## Entregáveis
 
