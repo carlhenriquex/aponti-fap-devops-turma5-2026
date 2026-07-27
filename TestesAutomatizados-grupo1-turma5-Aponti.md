@@ -70,9 +70,11 @@ O Node encontra sozinho o arquivo `tests/gerar-readme.test.js` (ele já segue o 
 
 **Smoke Test (T01, T07)** - verificam se o script roda de ponta a ponta sem erro e atualiza o README, tanto no caso normal quanto no caso extremo de não haver nenhum aluno válido. São o primeiro filtro: se falharem, nem faz sentido rodar o resto.
 
-**Teste de Sanidade (T02, T03, T04, T06, T08, T09)** - cada um valida isoladamente uma regra específica do script (nome obrigatório, github obrigatório, remoção de duplicado, filtro de extensão, tolerância a JSON malformado, tratamento de pasta ausente). São rápidos e direcionados a um comportamento pontual.
+**Teste de Sanidade (T02, T03, T04, T06, T09)** - cada um valida isoladamente uma regra específica do script (nome obrigatório, github obrigatório, remoção de duplicado, filtro de extensão, tratamento de pasta ausente). São rápidos e direcionados a um comportamento pontual.
 
 **Teste de Regressão (T05, T08)** - cobrem, em conjunto, várias regras ao mesmo tempo (ordenação combinada com múltiplos alunos; validação de JSON combinada com leitura de múltiplos arquivos), garantindo que mudanças futuras no script não quebrem o que já funciona.
+
+**Teste unitário complementar (EXTRA)** - não se encaixa nas três categorias da aula porque testa uma função auxiliar isolada (gerarTabela) em vez de um comportamento do sistema como um todo. Foi incluído por reforçar a confiabilidade de uma peça central da geração do README, mesmo sem envolver leitura de arquivos.
 
 ## Parte 5 - Execução local e resultados
 
@@ -99,10 +101,10 @@ O Node encontra sozinho o arquivo `tests/gerar-readme.test.js` (ele já segue o 
 ### Análise dos resultados
  
 Os 10 testes passaram sem nenhuma falha, o que indica que o script cobre corretamente todas as regras de negócio identificadas na Parte 1: validação de campos obrigatórios, remoção de duplicados (inclusive com diferença de maiúsculas/minúsculas), ordenação alfabética, filtro de extensão de arquivo, tolerância a JSON malformado e tratamento de erro quando a pasta não existe.
- 
+
 A suíte combina três níveis de confiança diferentes: os Smoke Tests confirmam que o fluxo completo funciona de ponta a ponta (inclusive no caso extremo de pasta sem nenhum aluno válido); os testes de Sanidade isolam cada regra individualmente, facilitando apontar exatamente qual comportamento quebrou caso algum teste falhe no futuro; e os testes de Regressão, ao combinar múltiplas condições em um mesmo cenário, dão segurança de que mudanças futuras no script (como as feitas para acomodar a refatoração em funções menores) não reintroduzem bugs já corrigidos.
- 
-Não foram identificadas falhas, instabilidades (os mesmos 10 testes passaram de forma consistente em execuções repetidas) ou testes lentos, a suíte inteira roda em menos de 1 segundo, o que a torna adequada para ser incorporada a uma pipeline de CI/CD sem impacto perceptível no tempo de build. A principal lacuna identificada não está nos testes em si, mas no que o script valida: como registrado em "Possíveis melhorias futuras", o projeto hoje confirma que os campos `github`/`linkedin` existem, mas não que os valores realmente apontam para perfis/links válidos.   
+
+Não foram identificadas falhas, instabilidades (os mesmos 10 testes passaram de forma consistente em execuções repetidas) ou testes lentos, a suíte inteira roda em menos de 1 segundo, o que a torna adequada para ser incorporada a uma pipeline de CI/CD sem impacto perceptível no tempo de build. A principal lacuna identificada não está nos testes em si, mas no que o script valida: como registrado em "Possíveis melhorias futuras", o projeto hoje confirma que os campos github/linkedin existem, mas não que os valores realmente apontam para perfis/links válidos. 
 
 ## Entregáveis
 
