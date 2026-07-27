@@ -47,7 +47,7 @@ Comportamentos esperados identificados:
 
 ## Parte 3 — Implementação
 
-Testes implementados em `tests/gerar-readme.test.js`, usando o **test runner nativo do Node.js** (`node:test` + `node:assert`, disponível a partir da v18, estável desde a v20) — sem dependências externas, conforme orientação do professor.
+Testes implementados em `tests/gerar-readme.test.js`, usando o **test runner nativo do Node.js** (`node:test` + `node:assert`, disponível a partir da v18, estável desde a v20) sem dependências externas, conforme orientação do professor.
 
 Para viabilizar os testes sem depender dos arquivos reais do repositório, `scripts/gerar-readme.js` foi levemente ajustado: a lógica foi movida para uma função `gerarReadme(pastaAlunos, readmePath)` exportada via `module.exports`, mantendo exatamente o mesmo comportamento quando executado diretamente (`node scripts/gerar-readme.js`, como faz a Action `atualizar-readme.yaml`). Isso permite rodar os testes contra pastas temporárias, sem tocar nos dados reais da turma.
 
