@@ -26,6 +26,7 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 | <img src="https://github.com/DiegoSouzaTech.png" width="50"> | Diego Kauã | [@DiegoSouzaTech](https://github.com/DiegoSouzaTech) | Recife-PE | [Perfil](https://www.linkedin.com/in/diego-souza-411bb8359/) |
 | <img src="https://github.com/ellenyass.png" width="50"> | Ellen Nunes | [@ellenyass](https://github.com/ellenyass) | Olinda | [Perfil](https://www.linkedin.com/in/ellen-nunes-40b6b524a/) |
 | <img src="https://github.com/egondimjraws.png" width="50"> | Emanuel Gondim | [@egondimjraws](https://github.com/egondimjraws) | Recife | [Perfil](https://linkedin.com/in/emanuelgondim) |
+| <img src="https://github.com/Felipe-Sabino-d-Oliveira.png" width="50"> | Felipe Sabino | [@Felipe-Sabino-d-Oliveira](https://github.com/Felipe-Sabino-d-Oliveira) | Recife | [Perfil](www.linkedin.com/in/felipe-sabino-de-oliveira) |
 | <img src="https://github.com/fililpe.png" width="50"> | Filipe Sousa | [@fililpe](https://github.com/fililpe) | Recife | [Perfil](https://linkedin.com/in/luizfilipesousa) |
 | <img src="https://github.com/Gabriel-Garabedian.png" width="50"> | Gabriel da SilvaDer Garabedian | [@Gabriel-Garabedian](https://github.com/Gabriel-Garabedian) | Jaboatõa dos Guararapes  | [Perfil](https://www.linkedin.com/in/garabedi4n) |
 | <img src="https://github.com/gavvdev.png" width="50"> | Gabriela Pires | [@gavvdev](https://github.com/gavvdev) | Janga, Paulista | [Perfil](https://linkedin.com/in/gabriela-pires-7787b6279) |
@@ -33,15 +34,18 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 | <img src="https://github.com/leonard0antonio.png" width="50"> | Leonardo Antonio | [@leonard0antonio](https://github.com/leonard0antonio) | Camaragibe | [Perfil](https://www.linkedin.com/in/leonardo-a-a063b519b/) |
 | <img src="https://github.com/LucasEmmanoel06.png" width="50"> | Lucas Emmanoel | [@LucasEmmanoel06](https://github.com/LucasEmmanoel06) | Recife | [Perfil](https://linkedin.com/in/lucasemalbuquerque) |
 | <img src="https://github.com/lucas-henriquedias.png" width="50"> | Lucas Henrique Dias de Medeiros | [@lucas-henriquedias](https://github.com/lucas-henriquedias) | Jaboatão dos Guararapes | [Perfil](https://www.linkedin.com/in/lucas-henrique-dias-345666346/) |
-| <img src="https://github.com/https://github.com/LucasMadureiro.png" width="50"> | Lucas Madureiro | [@https://github.com/LucasMadureiro](https://github.com/https://github.com/LucasMadureiro) | Paulista | [Perfil](https://www.linkedin.com/in/lucas-madureiro-matias-6946a8277/) |
+| <img src="https://github.com/LucasMadureiro.png" width="50"> | Lucas Madureiro | [@LucasMadureiro](https://github.com/LucasMadureiro) | Paulista | [Perfil](https://www.linkedin.com/in/lucas-madureiro-matias-6946a8277/) |
 | <img src="https://github.com/felipeGTBR.png" width="50"> | Luiz Felipe | [@felipeGTBR](https://github.com/felipeGTBR) | Jaboatão | [Perfil](https://linkedin.com/in/luiz-felipe-ti) |
-| <img src="https://github.com/miltonmaglhaesv.png" width="50"> | Milton Magalhães | [@miltonmaglhaesv](https://github.com/miltonmaglhaesv) | Recife | [Perfil](https://linkedin.com/in/miltonmagalhaesv) |
+| <img src="https://github.com/Mariana-ASM.png" width="50"> | Mariana Monteiro | [@Mariana-ASM](https://github.com/Mariana-ASM) | Recife | [Perfil](https://linkedin.com/in/mariana-asm-tec) |
+| <img src="https://github.com/miltonmagalhaesv.png" width="50"> | Milton Magalhães | [@miltonmagalhaesv](https://github.com/miltonmagalhaesv) | Recife | [Perfil](https://linkedin.com/in/miltonmagalhaesv) |
 | <img src="https://github.com/miqueias-eduardo.png" width="50"> | Miqueias Eduardo | [@miqueias-eduardo](https://github.com/miqueias-eduardo) | Jaboatão dos Guararapes | [Perfil](https://www.linkedin.com/in/miqueias-eduardo) |
 | <img src="https://github.com/nk-medeiros.png" width="50"> | Nayara Karla Medeiros da Silva | [@nk-medeiros](https://github.com/nk-medeiros) | Jaboatão dos Guararapes | - |
 | <img src="https://github.com/nhsneto.png" width="50"> | Nelson Neto | [@nhsneto](https://github.com/nhsneto) | Paulista | [Perfil](https://linkedin.com/in/nhsneto) |
 | <img src="https://github.com/Ovat1o.png" width="50"> | Otávio Leão | [@Ovat1o](https://github.com/Ovat1o) | Recife | [Perfil](https://linkedin.com/in/otaviosleao) |
 | <img src="https://github.com/PedroDelmiro13.png" width="50"> | Pedro Delmiro | [@PedroDelmiro13](https://github.com/PedroDelmiro13) | Jaboatão dos Guararapes | [Perfil](https://linkedin.com/in/pedrodelmiro) |
 | <img src="https://github.com/ph95583faculdade-maker.png" width="50"> | Pedro Henrique | [@ph95583faculdade-maker](https://github.com/ph95583faculdade-maker) | Recife | [Perfil](https://www.linkedin.com/in/pedro-h-lima) |
+| <img src="https://github.com/PedroLuiz02.png" width="50"> | Pedro Luiz | [@PedroLuiz02](https://github.com/PedroLuiz02) | Recife | [Perfil](www.linkedin.com/in/pedroluiz02) |
+| <img src="https://github.com/ricardosantanadev4.png" width="50"> | Ricardo Santana | [@ricardosantanadev4](https://github.com/ricardosantanadev4) | Recife | [Perfil](https://www.linkedin.com/in/ricardo-santana-08b91829b/) |
 | <img src="https://github.com/talescavalcanti.png" width="50"> | Tales Cavalcanti | [@talescavalcanti](https://github.com/talescavalcanti) | Jaboatão dos Guararapes | [Perfil](https://linkedin.com/in/tales-cavalcantii) |
 | <img src="https://github.com/victorjls21.png" width="50"> | Victor Julius | [@victorjls21](https://github.com/victorjls21) | Olinda | [Perfil](https://linkedin.com/in/victor-julius) |
 | <img src="https://github.com/VitorJunior60.png" width="50"> | Vitor Marques | [@VitorJunior60](https://github.com/VitorJunior60) | Recife | [Perfil](www.linkedin.com/in/vitor-marques-3b1098368) |
@@ -51,8 +55,8 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 ## Estatísticas
 
 <!-- ESTATISTICAS-INICIO -->
-Total de alunos cadastrados: 25
+Total de alunos cadastrados: 29
 
-Última atualização: 24/06/2026, 22:21
+Última atualização: 26/07/2026, 10:24
 
 <!-- ESTATISTICAS-FIM -->
