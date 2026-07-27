@@ -64,8 +64,8 @@ function gerarTabela(alunos) {
   return tabela;
 }
 
-function atualizarReadme() {
-  const alunos = ordenarAlunos(removerDuplicados(lerAlunos(pastaAlunos)));
+function atualizarReadme(pasta = pastaAlunos, arquivoReadme = readmePath) {
+  const alunos = ordenarAlunos(removerDuplicados(lerAlunos(pasta)));
   const tabela = gerarTabela(alunos);
 
   const dataAtualizacao = new Date().toLocaleString("pt-BR", {
@@ -73,7 +73,7 @@ function atualizarReadme() {
     timeStyle: "short",
   });
 
-  let readme = fs.readFileSync(readmePath, "utf8");
+  let readme = fs.readFileSync(arquivoReadme, "utf8");
 
   readme = readme.replace(
     /<!-- TABELA-INICIO -->([\s\S]*?)<!-- TABELA-FIM -->/,
@@ -90,7 +90,7 @@ Total de alunos cadastrados: ${alunos.length}
 <!-- ESTATISTICAS-FIM -->`
   );
 
-  fs.writeFileSync(readmePath, readme, "utf8");
+  fs.writeFileSync(arquivoReadme, readme, "utf8");
   console.log("README atualizado com sucesso.");
   return { alunos, tabela, dataAtualizacao };
 }
