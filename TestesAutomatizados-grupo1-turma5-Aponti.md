@@ -52,11 +52,11 @@ Testes implementados em `tests/gerar-readme.test.js`, usando o **test runner nat
 
 Para viabilizar os testes sem depender dos arquivos reais do repositório, `scripts/gerar-readme.js` foi organizado em funções menores e independentes, cada uma responsável por uma etapa do processo:
 
-- `lerAlunos(pasta)` — lê e valida os arquivos `.json` de uma pasta.
-- `removerDuplicados(alunos)` — filtra usuários do GitHub repetidos.
-- `ordenarAlunos(alunos)` — ordena a lista por nome.
-- `gerarTabela(alunos)` — monta a tabela em Markdown.
-- `atualizarReadme(pasta, arquivoReadme)` — orquestra as funções acima e escreve o resultado no README.
+- `lerAlunos(pasta)` - lê e valida os arquivos `.json` de uma pasta.
+- `removerDuplicados(alunos)` - filtra usuários do GitHub repetidos.
+- `ordenarAlunos(alunos)` - ordena a lista por nome.
+- `gerarTabela(alunos)` - monta a tabela em Markdown.
+- `atualizarReadme(pasta, arquivoReadme)` - orquestra as funções acima e escreve o resultado no README.
 
 Todas essas funções são exportadas via `module.exports`, e `atualizarReadme` aceita a pasta de alunos e o caminho do README como parâmetros (com valores padrão apontando para os arquivos reais do projeto), o que permite chamá-la nos testes com pastas temporárias, sem tocar nos dados reais da turma. Quando o script é executado diretamente (`node scripts/gerar-readme.js`, como faz a Action `atualizar-readme.yaml`), ele continua funcionando exatamente como antes.
 
