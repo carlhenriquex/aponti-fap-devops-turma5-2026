@@ -1,9 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-const pastaAlunos = path.join(__dirname, "../alunos");
-const readmePath = path.join(__dirname, "../README.md");
-
+/**
+ * Lê todos os arquivos JSON da pasta informada e retorna
+ * apenas os alunos válidos.
+ *
+ * @param {string} pasta Caminho da pasta de alunos.
+ * @returns {Array<Object>} Lista de alunos válidos.
+ */
 function lerAlunos(pasta) {
   if (!fs.existsSync(pasta)) {
     throw new Error("Pasta 'alunos' não encontrada.");
@@ -16,7 +20,11 @@ function lerAlunos(pasta) {
     if (!arquivo.endsWith(".json")) continue;
 
     try {
-      const conteudo = fs.readFileSync(path.join(pasta, arquivo), "utf8");
+      const conteudo = fs.readFileSync(
+        path.join(pasta, arquivo),
+        "utf8"
+      );
+
       const aluno = JSON.parse(conteudo);
 
       if (!aluno.nome || !aluno.github) continue;
@@ -30,11 +38,18 @@ function lerAlunos(pasta) {
   return alunos;
 }
 
+/**
+ * Remove alunos duplicados considerando o GitHub
+ * (ignorando diferença entre maiúsculas e minúsculas).
+ *
+ * @param {Array<Object>} alunos
+ * @returns {Array<Object>}
+ */
 function removerDuplicados(alunos) {
   const githubsUnicos = new Set();
 
   return alunos.filter((aluno) => {
-    const github = String(aluno.github).toLowerCase();
+    const github = aluno.github.toLowerCase();
 
     if (githubsUnicos.has(github)) {
       return false;
@@ -45,10 +60,24 @@ function removerDuplicados(alunos) {
   });
 }
 
+/**
+ * Ordena os alunos alfabeticamente pelo nome.
+ *
+ * @param {Array<Object>} alunos
+ * @returns {Array<Object>}
+ */
 function ordenarAlunos(alunos) {
-  return [...alunos].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+  return [...alunos].sort((a, b) =>
+    a.nome.localeCompare(b.nome, "pt-BR")
+  );
 }
 
+/**
+ * Gera a tabela Markdown utilizada no README.
+ *
+ * @param {Array<Object>} alunos
+ * @returns {string}
+ */
 function gerarTabela(alunos) {
   let tabela = `
 | Avatar | Nome | GitHub | Cidade | LinkedIn |
@@ -56,7 +85,9 @@ function gerarTabela(alunos) {
 `;
 
   for (const aluno of alunos) {
-    const linkedin = aluno.linkedin ? `[Perfil](${aluno.linkedin})` : "-";
+    const linkedin = aluno.linkedin
+      ? `[Perfil](${aluno.linkedin})`
+      : "-";
 
     tabela += `| <img src="https://github.com/${aluno.github}.png" width="50"> | ${aluno.nome} | [@${aluno.github}](https://github.com/${aluno.github}) | ${aluno.cidade || "-"} | ${linkedin} |\n`;
   }
@@ -64,8 +95,28 @@ function gerarTabela(alunos) {
   return tabela;
 }
 
-function atualizarReadme() {
-  const alunos = ordenarAlunos(removerDuplicados(lerAlunos(pastaAlunos)));
+/**
+ * Atualiza o README.
+ *
+ * Os parâmetros possuem valores padrão para manter o
+ * funcionamento da GitHub Action. Durante os testes,
+ * podem ser utilizados diretórios e arquivos temporários,
+ * evitando alterações nos arquivos reais do projeto.
+ *
+ * @param {string} pastaAlunos
+ * @param {string} readmePath
+ * @returns {{ alunos: Array<Object>, tabela: string, total: number }}
+ */
+function atualizarReadme(
+  pastaAlunos = path.join(__dirname, "../alunos"),
+  readmePath = path.join(__dirname, "../README.md")
+) {
+  const alunos = ordenarAlunos(
+    removerDuplicados(
+      lerAlunos(pastaAlunos)
+    )
+  );
+
   const tabela = gerarTabela(alunos);
 
   const dataAtualizacao = new Date().toLocaleString("pt-BR", {
@@ -91,10 +142,21 @@ Total de alunos cadastrados: ${alunos.length}
   );
 
   fs.writeFileSync(readmePath, readme, "utf8");
+
   console.log("README atualizado com sucesso.");
-  return { alunos, tabela, dataAtualizacao };
+
+  return {
+    alunos,
+    tabela,
+    total: alunos.length,
+  };
 }
 
+/**
+ * Executa o script apenas quando chamado diretamente.
+ * Quando importado pelos testes, apenas disponibiliza
+ * as funções exportadas.
+ */
 if (require.main === module) {
   try {
     atualizarReadme();
