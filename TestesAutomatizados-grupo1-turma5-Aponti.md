@@ -56,7 +56,7 @@ Para viabilizar os testes sem depender dos arquivos reais do repositório, `scri
 - `removerDuplicados(alunos)` - filtra usuários do GitHub repetidos.
 - `ordenarAlunos(alunos)` - ordena a lista por nome.
 - `gerarTabela(alunos)` - monta a tabela em Markdown.
-- `atualizarReadme(pasta, arquivoReadme)` - orquestra as funções acima e escreve o resultado no README.
+- `atualizarReadme(pasta, readmePath)` - orquestra as funções acima e escreve o resultado no README.
 
 Todas essas funções são exportadas via `module.exports`, e `atualizarReadme` aceita a pasta de alunos e o caminho do README como parâmetros (com valores padrão apontando para os arquivos reais do projeto), o que permite chamá-la nos testes com pastas temporárias, sem tocar nos dados reais da turma. Quando o script é executado diretamente (`node scripts/gerar-readme.js`, como faz a Action `atualizar-readme.yaml`), ele continua funcionando exatamente como antes.
 
@@ -91,7 +91,6 @@ O Node encontra sozinho o arquivo `tests/gerar-readme.test.js` (ele já segue o 
 | T09 | Sanidade | Pasta ausente lança erro | PASSOU |
 | EXTRA | Unitário | `gerarTabela` monta a linha corretamente | PASSOU |
 
-> Milton e Gabriela:
 **Resumo da execução da execução (`node --test`):** 10 testes, 10 passou, 0 falhou.
 
 >Observações sobre mensagens que aparecem no terminal durante a execução (não são falhas):
