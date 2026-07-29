@@ -122,10 +122,10 @@ Não foram identificadas falhas, instabilidades (os mesmos 10 testes passaram de
 
 | Avatar | Nome | GitHub |
 |---|---|---|
-| <a href="https://github.com/gavvdev"><img src="https://github.com/gavvdev.png" width="80"></a> | Gabriela Pires Silva do Nascimento | [@gavvdev](https://github.com/gavvdev) |
-| <a href="https://github.com/ricardosantanadev4"><img src="https://github.com/ricardosantanadev4.png" width="80"></a> | Ricardo Silva | [@ricardosantanadev4](https://github.com/ricardosantanadev4) |
 | <a href="https://github.com/egondimjraws"><img src="https://github.com/egondimjraws.png" width="80"></a> | Emanuel de Andrade Gondim | [@egondimjraws](https://github.com/egondimjraws) |
-| <a href="https://github.com/LucasMadureiro"><img src="https://github.com/LucasMadureiro.png" width="80"></a> | Lucas Madureiro Matias | [@LucasMadureiro](https://github.com/LucasMadureiro) |
-| <a href="https://github.com/SergioFeitosaa"><img src="https://github.com/SergioFeitosaa.png" width="80"></a> | Sergio Ricardo Feitosa | [@SergioFeitosaa](https://github.com/SergioFeitosaa) |
 | <a href="https://github.com/Felipe-Sabino-d-Oliveira"><img src="https://github.com/Felipe-Sabino-d-Oliveira.png" width="80"></a> | Felipe Sabino de Oliveira | [@Felipe-Sabino-d-Oliveira](https://github.com/Felipe-Sabino-d-Oliveira) |
+| <a href="https://github.com/gavvdev"><img src="https://github.com/gavvdev.png" width="80"></a> | Gabriela Pires Silva do Nascimento | [@gavvdev](https://github.com/gavvdev) |
+| <a href="https://github.com/LucasMadureiro"><img src="https://github.com/LucasMadureiro.png" width="80"></a> | Lucas Madureiro Matias | [@LucasMadureiro](https://github.com/LucasMadureiro) |
 | <a href="https://github.com/miltonmagalhaesv"><img src="https://github.com/miltonmagalhaesv.png" width="80"></a> | Milton Magalhaes | [@miltonmagalhaesv](https://github.com/miltonmagalhaesv) |
+| <a href="https://github.com/ricardosantanadev4"><img src="https://github.com/ricardosantanadev4.png" width="80"></a> | Ricardo Silva | [@ricardosantanadev4](https://github.com/ricardosantanadev4) |
+| <a href="https://github.com/SergioFeitosaa"><img src="https://github.com/SergioFeitosaa.png" width="80"></a> | Sergio Ricardo Feitosa | [@SergioFeitosaa](https://github.com/SergioFeitosaa) |
