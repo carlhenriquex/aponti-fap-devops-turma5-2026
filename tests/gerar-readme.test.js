@@ -78,3 +78,19 @@ describe("T07 - JSON com formato inválido", () => {
     expect(alunos).toHaveLength(1);
   });
 });
+
+describe("T08 - Campos obrigatórios vazios", () => {
+  test("não deve incluir alunos com campos obrigatórios vazios", () => {
+    const alunos = lerAlunos(
+      path.join(fixturesPath, "t08-campos-obrigatorios-vazios"),
+    );
+
+    expect(alunos).toHaveLength(1);
+    expect(alunos[0]).toMatchObject({
+      nome: "Pedro Delmiro",
+      github: "PedroDelmiro13",
+      cidade: "Jaboatão dos Guararapes",
+      linkedin: "https://linkedin.com/in/pedrodelmiro",
+    });
+  });
+});
