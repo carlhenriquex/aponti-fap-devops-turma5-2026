@@ -3,7 +3,9 @@ const {
   lerAlunos,
   removerDuplicados,
   ordenarAlunos,
+  gerarTabela,
 } = require("../scripts/gerar-readme");
+const { getCelulaTabela } = require("./utils/test-helpers");
 
 const fixturesPath = path.join(__dirname, "fixtures");
 
@@ -92,5 +94,17 @@ describe("T08 - Campos obrigatórios vazios", () => {
       cidade: "Jaboatão dos Guararapes",
       linkedin: "https://linkedin.com/in/pedrodelmiro",
     });
+  });
+});
+
+describe("T09 - Linkedin ausente", () => {
+  test("deve incluir aluno com linkedin ausente, exibindo hífen como valor padrão", () => {
+    const PRIMEIRA_LINHA = 0;
+    const alunos = lerAlunos(path.join(fixturesPath, "t09-linkedin-ausente"));
+
+    const tabela = gerarTabela(alunos);
+    const valorLinkedin = getCelulaTabela(tabela, PRIMEIRA_LINHA, "LinkedIn");
+
+    expect(valorLinkedin).toBe("-");
   });
 });
