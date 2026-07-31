@@ -10,7 +10,7 @@ const fixturesPath = path.join(__dirname, "fixtures");
 describe("T01 - JSON válido", () => {
   test("deve reconhecer e incluir o aluno na lista", () => {
     const alunos = lerAlunos(path.join(fixturesPath, "t01-valido"));
-    
+
     expect(alunos).toHaveLength(1);
     expect(alunos[0]).toMatchObject({
       nome: "Pedro Delmiro",
@@ -54,5 +54,19 @@ describe("T05 - Alunos fora de ordem", () => {
       "Carlos Lima",
       "Pedro Delmiro",
     ]);
+  });
+});
+
+describe("T06 - Arquivo que não é JSON", () => {
+  test("não deve incluir arquivos que não estejam no formato JSON", () => {
+    const alunos = lerAlunos(path.join(fixturesPath, "t06-arquivo-nao-json"));
+
+    expect(alunos).toHaveLength(1);
+    expect(alunos[0]).toMatchObject({
+      nome: "Pedro Delmiro",
+      github: "PedroDelmiro13",
+      cidade: "Jaboatão dos Guararapes",
+      linkedin: "https://linkedin.com/in/pedrodelmiro",
+    });
   });
 });
