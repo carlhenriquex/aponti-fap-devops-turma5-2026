@@ -70,3 +70,11 @@ describe("T06 - Arquivo que não é JSON", () => {
     });
   });
 });
+
+describe("T07 - JSON com formato inválido", () => {
+  test("não deve incluir arquivos JSON com formato inválido", () => {
+    const alunos = lerAlunos(path.join(fixturesPath, "t07-json-invalido"));
+
+    expect(alunos).toHaveLength(1);
+  });
+});
