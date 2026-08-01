@@ -124,7 +124,7 @@ function atualizarReadme(
     timeStyle: "short",
   });
 
-  let readme = fs.readFileSync(arquivoReadme, "utf8");
+  let readme = fs.readFileSync(readmPath, "utf8");
 
   readme = readme.replace(
     /<!-- TABELA-INICIO -->([\s\S]*?)<!-- TABELA-FIM -->/,
