@@ -115,7 +115,7 @@ Além da execução local registrada na Parte 5, a suíte de testes foi incorpor
 
 **O que o workflow faz:** a cada push ou PR, o GitHub cria uma máquina virtual, instala o Node.js (v22, mesma versão usada no `atualizar-readme.yaml`) e executa `node --test`. O resultado aparece diretamente na tela do Pull Request, como um check (✅ passou / ❌ falhou), sem que ninguém precise rodar os testes manualmente antes de avisar o time.
 
-**Evidência de execução:** ao abrir um PR de uma branch de teste para `main`, o check `Executar Testes Automatizados / testes (push)` rodou com sucesso em 7 segundos, confirmando que os 10 testes continuam passando de forma automatizada.
+**Evidência de execução:** ao abrir um PR de uma branch de teste para main, o workflow rodou e, nas duas primeiras tentativas, apontou uma falha real: a função atualizarReadme referenciava uma variável (arquivoReadme) que não existia no código, quebrando os testes T01 e T07. O erro foi corrigido (ajuste do nome da variável para readmePath) e, na terceira execução, o check Executar Testes Automatizados passou com sucesso, confirmando os 10 testes. Esse caso é um exemplo prático de por que ter CI é útil: o bug foi identificado automaticamente antes de chegar ao main, sem depender de alguém rodar os testes manualmente.
 
 **Por que isso importa:** esse workflow funciona em paralelo ao `atualizar-readme.yaml` já existente (que só atualiza o README quando `alunos/**` muda). Agora o repositório tem dois workflows com responsabilidades separadas, um mantém o README atualizado, o outro garante qualidade antes do merge, o que dá mais segurança para o grupo revisar e aprovar Pull Requests, já que a checagem de testes deixa de depender de alguém rodar `node --test` manualmente.
 
