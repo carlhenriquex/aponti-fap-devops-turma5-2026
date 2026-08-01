@@ -1,11 +1,17 @@
+const fs = require("fs");
 const path = require("path");
 const {
   lerAlunos,
   removerDuplicados,
   ordenarAlunos,
   gerarTabela,
+  atualizarReadme,
 } = require("../scripts/gerar-readme");
-const { getCelulaTabela } = require("./utils/test-helpers");
+const {
+  getCelulaTabela,
+  getNumeroLinhasTabela,
+  getLinhaTabela,
+} = require("./utils/test-helpers");
 
 const fixturesPath = path.join(__dirname, "fixtures");
 
@@ -106,5 +112,25 @@ describe("T09 - Linkedin ausente", () => {
     const valorLinkedin = getCelulaTabela(tabela, PRIMEIRA_LINHA, "LinkedIn");
 
     expect(valorLinkedin).toBe("-");
+  });
+});
+
+describe("T10 - Atualização do README", () => {
+  test("deve incluir 3 alunos na tabela do README", () => {
+    const pastaAlunos = path.join(fixturesPath, "t10-atualizacao-readme");
+    const readmePath = path.join(pastaAlunos, "README-TEST.md");
+
+    const { tabela } = atualizarReadme(pastaAlunos, readmePath);
+    const readme = fs.readFileSync(readmePath, "utf-8");
+
+    const joao = `| <img src="https://github.com/joaotestegithub.png" width="50"> | João Fulano | [@joaotestegithub](https://github.com/joaotestegithub) | Recife | - |`;
+    const maria = `| <img src="https://github.com/mariatestegithub.png" width="50"> | Maria Beltrano | [@mariatestegithub](https://github.com/mariatestegithub) | Paulista | [Perfil](https://linkedin.com/in/mariateste) |`;
+    const jose = `| <img src="https://github.com/josetestegithub.png" width="50"> | José Sicrano | [@josetestegithub](https://github.com/josetestegithub) | - | [Perfil](https://linkedin.com/in/joseteste) |`;
+
+    expect(getNumeroLinhasTabela(tabela)).toBe(3);
+    expect(tabela).toContain(joao);
+    expect(tabela).toContain(maria);
+    expect(tabela).toContain(jose);
+    expect(readme).toContain("Total de alunos cadastrados: 3");
   });
 });
