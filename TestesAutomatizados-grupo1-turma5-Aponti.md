@@ -56,7 +56,7 @@ Para viabilizar os testes sem depender dos arquivos reais do repositório, `scri
 - `removerDuplicados(alunos)` - filtra usuários do GitHub repetidos.
 - `ordenarAlunos(alunos)` - ordena a lista por nome.
 - `gerarTabela(alunos)` - monta a tabela em Markdown.
-- `atualizarReadme(pasta, arquivoReadme)` - orquestra as funções acima e escreve o resultado no README.
+- `atualizarReadme(pasta, readmePath)` - orquestra as funções acima e escreve o resultado no README.
 
 Todas essas funções são exportadas via `module.exports`, e `atualizarReadme` aceita a pasta de alunos e o caminho do README como parâmetros (com valores padrão apontando para os arquivos reais do projeto), o que permite chamá-la nos testes com pastas temporárias, sem tocar nos dados reais da turma. Quando o script é executado diretamente (`node scripts/gerar-readme.js`, como faz a Action `atualizar-readme.yaml`), ele continua funcionando exatamente como antes.
 
@@ -91,7 +91,6 @@ O Node encontra sozinho o arquivo `tests/gerar-readme.test.js` (ele já segue o 
 | T09 | Sanidade | Pasta ausente lança erro | PASSOU |
 | EXTRA | Unitário | `gerarTabela` monta a linha corretamente | PASSOU |
 
-> Milton e Gabriela:
 **Resumo da execução da execução (`node --test`):** 10 testes, 10 passou, 0 falhou.
 
 >Observações sobre mensagens que aparecem no terminal durante a execução (não são falhas):
@@ -106,13 +105,27 @@ A suíte combina três níveis de confiança diferentes: os Smoke Tests confirma
 
 Não foram identificadas falhas, instabilidades (os mesmos 10 testes passaram de forma consistente em execuções repetidas) ou testes lentos, a suíte inteira roda em menos de 1 segundo, o que a torna adequada para ser incorporada a uma pipeline de CI/CD sem impacto perceptível no tempo de build. A principal lacuna identificada não está nos testes em si, mas no que o script valida: como registrado em "Possíveis melhorias futuras", o projeto hoje confirma que os campos github/linkedin existem, mas não que os valores realmente apontam para perfis/links válidos. 
 
+## Parte 6 - CI automatizado nos Pull Requests
+
+Além da execução local registrada na Parte 5, a suíte de testes foi incorporada ao GitHub Actions através do workflow `executar-testes.yaml`.
+
+**Gatilhos configurados:**
+- `push` nas branches `main` e `professor`.
+- `pull_request` tendo `main` ou `professor` como branch de destino, inclusive PRs vindos de outras branches (ex: branches de teste/feature de qualquer integrante).
+
+**O que o workflow faz:** a cada push ou PR, o GitHub cria uma máquina virtual, instala o Node.js (v22, mesma versão usada no `atualizar-readme.yaml`) e executa `node --test`. O resultado aparece diretamente na tela do Pull Request, como um check (✅ passou / ❌ falhou), sem que ninguém precise rodar os testes manualmente antes de avisar o time.
+
+**Evidência de execução:** ao abrir um PR de uma branch de teste para `main`, o check `Executar Testes Automatizados / testes (push)` rodou com sucesso em 7 segundos, confirmando que os 10 testes continuam passando de forma automatizada.
+
+**Por que isso importa:** esse workflow funciona em paralelo ao `atualizar-readme.yaml` já existente (que só atualiza o README quando `alunos/**` muda). Agora o repositório tem dois workflows com responsabilidades separadas, um mantém o README atualizado, o outro garante qualidade antes do merge, o que dá mais segurança para o grupo revisar e aprovar Pull Requests, já que a checagem de testes deixa de depender de alguém rodar `node --test` manualmente.
+
 ## Entregáveis
 
 - [x] Arquivos de teste no repositório (`tests/gerar-readme.test.js`)
 - [x] Script ajustado (`scripts/gerar-readme.js`)
-- [ ] Pull Request aberto para o repositório principal da turma
+- [x] Pull Request aberto para o repositório principal da turma
 - [x] Esta documentação preenchida
-- [ ] Slides para a apresentação (10 min, 2 integrantes)
+- [x] Slides para a apresentação (10 min, 2 integrantes)
 
 ### Possíveis melhorias futuras
 
