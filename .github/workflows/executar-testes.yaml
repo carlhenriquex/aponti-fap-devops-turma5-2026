@@ -1,0 +1,42 @@
+# roda a suíte de testes automatizados (node:test) do projeto
+name: Executar Testes Automatizados
+
+on:
+  # Roda em pushes diretos para as branches principais (pra manter consistência no repositório).
+  push:
+    branches:
+      - main
+      - professor
+
+  # Roda em todo Pull Request direcionado a essas branches, inclusive vindo
+  # de outras branches (ex: feature/algum-aluno-novo).
+  # garante que ninguém consiga mesclar um PR que quebra
+  # os testes sem que isso apareça de forma visível na tela do PR.
+  pull_request:
+    branches:
+      - main
+      - professor
+    # Sem filtro de "paths" de propósito: diferente do atualizar-readme.yaml
+    # (que só liga para mudanças em alunos/**), os testes devem rodar sempre
+    # que scripts/gerar-readme.js ou tests/gerar-readme.test.js mudarem,
+    # não só quando os JSONs de alunos mudam.
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+        
+          node-version: 22
+
+      - name: Executar suíte de testes (node:test)
+        # "node --test" descobre sozinho o arquivo tests/gerar-readme.test.js,
+        # pois ele já segue o padrão de nome esperado pelo test runner nativo.
+        # Se qualquer teste falhar, este passo retorna código de saída != 0,
+        # e o GitHub marca o PR com um X vermelho automaticamente.
+        run: node --test
