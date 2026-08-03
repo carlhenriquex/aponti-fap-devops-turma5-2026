@@ -16,8 +16,8 @@ const {
 
 function criarAmbienteTemporario() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gerar-readme-teste-'));
-  const pastaAlunos = path.join(dir, 'alunos');
-  fs.mkdirSync(pastaAlunos);
+  const caminhoPastaAlunos = path.join(dir, 'alunos');
+  fs.mkdirSync(caminhoPastaAlunos);
   const readmePath = path.join(dir, 'README.md');
 
   const readmeInicial = [
@@ -33,11 +33,11 @@ function criarAmbienteTemporario() {
 
   fs.writeFileSync(readmePath, readmeInicial, 'utf-8');
 
-  return { dir, pastaAlunos, readmePath };
+  return { dir, caminhoPastaAlunos, readmePath };
 }
 
-function criarAlunoJson(pastaAlunos, nomeArquivo, conteudo) {
-  const caminho = path.join(pastaAlunos, nomeArquivo);
+function criarAlunoJson(caminhoPastaAlunos, nomeArquivo, conteudo) {
+  const caminho = path.join(caminhoPastaAlunos, nomeArquivo);
   const texto = typeof conteudo === 'string' ? conteudo : JSON.stringify(conteudo);
   fs.writeFileSync(caminho, texto, 'utf-8');
 }
@@ -55,14 +55,14 @@ function limpar(dir) {
 // (fluxo completo, via atualizarReadme)
 // =========================================================================
 test('T01 - JSON valido: aluno e incluido e listado no README', () => {
-  const { dir, pastaAlunos, readmePath } = criarAmbienteTemporario();
+  const { dir, caminhoPastaAlunos, readmePath } = criarAmbienteTemporario();
   try {
-    criarAlunoJson(pastaAlunos, 'lucas.json', {
+    criarAlunoJson(caminhoPastaAlunos, 'lucas.json', {
       nome: 'Lucas Madureiro Matias',
       github: 'LucasMadureiro',
     });
 
-    assert.doesNotThrow(() => atualizarReadme(pastaAlunos, readmePath));
+    assert.doesNotThrow(() => atualizarReadme(caminhoPastaAlunos, readmePath));
 
     const readme = lerReadme(readmePath);
     assert.match(readme, /Lucas Madureiro Matias/);
@@ -77,13 +77,13 @@ test('T01 - JSON valido: aluno e incluido e listado no README', () => {
 // (aqui testamos direto a funcao lerAlunos, que e' quem aplica essa regra)
 // =========================================================================
 test('T02 - Nome ausente: registro e ignorado', () => {
-  const { dir, pastaAlunos } = criarAmbienteTemporario();
+  const { dir, caminhoPastaAlunos } = criarAmbienteTemporario();
   try {
-    criarAlunoJson(pastaAlunos, 'sem-nome.json', {
+    criarAlunoJson(caminhoPastaAlunos, 'sem-nome.json', {
       github: 'usuario-sem-nome',
     });
 
-    const alunos = lerAlunos(pastaAlunos);
+    const alunos = lerAlunos(caminhoPastaAlunos);
     assert.equal(alunos.length, 0, 'aluno sem nome nao deveria ser incluido');
   } finally {
     limpar(dir);
@@ -94,13 +94,13 @@ test('T02 - Nome ausente: registro e ignorado', () => {
 // T03 — Sanidade: github ausente -> registro ignorado
 // =========================================================================
 test('T03 - Github ausente: registro e ignorado', () => {
-  const { dir, pastaAlunos } = criarAmbienteTemporario();
+  const { dir, caminhoPastaAlunos } = criarAmbienteTemporario();
   try {
-    criarAlunoJson(pastaAlunos, 'sem-github.json', {
+    criarAlunoJson(caminhoPastaAlunos, 'sem-github.json', {
       nome: 'Aluno Sem Github',
     });
 
-    const alunos = lerAlunos(pastaAlunos);
+    const alunos = lerAlunos(caminhoPastaAlunos);
     assert.equal(alunos.length, 0, 'aluno sem github nao deveria ser incluido');
   } finally {
     limpar(dir);
@@ -146,16 +146,16 @@ test('T05 - Alunos fora de ordem: lista final fica ordenada por nome', () => {
 // T06 — Sanidade: arquivo que nao e .json -> ignorado, script nao quebra
 // =========================================================================
 test('T06 - Arquivo nao-JSON na pasta alunos e ignorado', () => {
-  const { dir, pastaAlunos } = criarAmbienteTemporario();
+  const { dir, caminhoPastaAlunos } = criarAmbienteTemporario();
   try {
-    criarAlunoJson(pastaAlunos, 'aluno-valido.json', {
+    criarAlunoJson(caminhoPastaAlunos, 'aluno-valido.json', {
       nome: 'Felipe Sabino de Oliveira',
       github: 'Felipe-Sabino-d-Oliveira',
     });
     // arquivo com extensao errada, nao deve ser processado nem quebrar o script
-    fs.writeFileSync(path.join(pastaAlunos, 'anotacoes.txt'), 'isso nao e um JSON de aluno', 'utf-8');
+    fs.writeFileSync(path.join(caminhoPastaAlunos, 'anotacoes.txt'), 'isso nao e um JSON de aluno', 'utf-8');
 
-    const alunos = lerAlunos(pastaAlunos);
+    const alunos = lerAlunos(caminhoPastaAlunos);
     assert.equal(alunos.length, 1, 'so o arquivo .json valido deveria ser lido');
     assert.equal(alunos[0].nome, 'Felipe Sabino de Oliveira');
   } finally {
@@ -167,12 +167,12 @@ test('T06 - Arquivo nao-JSON na pasta alunos e ignorado', () => {
 // T07 — Smoke Test: nenhum aluno valido -> roda sem erro, README com 0 alunos
 // =========================================================================
 test('T07 - Nenhum aluno valido: script roda sem erro e README fica com 0 alunos', () => {
-  const { dir, pastaAlunos, readmePath } = criarAmbienteTemporario();
+  const { dir, caminhoPastaAlunos, readmePath } = criarAmbienteTemporario();
   try {
-    criarAlunoJson(pastaAlunos, 'invalido-1.json', { github: 'sem-nome-1' });
-    criarAlunoJson(pastaAlunos, 'invalido-2.json', { nome: 'Sem Github' });
+    criarAlunoJson(caminhoPastaAlunos, 'invalido-1.json', { github: 'sem-nome-1' });
+    criarAlunoJson(caminhoPastaAlunos, 'invalido-2.json', { nome: 'Sem Github' });
 
-    assert.doesNotThrow(() => atualizarReadme(pastaAlunos, readmePath));
+    assert.doesNotThrow(() => atualizarReadme(caminhoPastaAlunos, readmePath));
 
     const readme = lerReadme(readmePath);
     assert.match(readme, /Total de alunos cadastrados:\s*0/);
@@ -185,16 +185,16 @@ test('T07 - Nenhum aluno valido: script roda sem erro e README fica com 0 alunos
 // T08 — Regressao: JSON malformado -> ignorado, nao interrompe os demais
 // =========================================================================
 test('T08 - JSON malformado e ignorado e nao interrompe o processamento dos demais', () => {
-  const { dir, pastaAlunos } = criarAmbienteTemporario();
+  const { dir, caminhoPastaAlunos } = criarAmbienteTemporario();
   try {
     // JSON com erro de sintaxe proposital (virgula sobrando)
-    criarAlunoJson(pastaAlunos, 'quebrado.json', '{ "nome": "Quebrado", "github": "quebrado", }');
-    criarAlunoJson(pastaAlunos, 'valido.json', {
+    criarAlunoJson(caminhoPastaAlunos, 'quebrado.json', '{ "nome": "Quebrado", "github": "quebrado", }');
+    criarAlunoJson(caminhoPastaAlunos, 'valido.json', {
       nome: 'Sergio Ricardo Feitosa',
       github: 'SergioFeitosaa',
     });
 
-    const alunos = lerAlunos(pastaAlunos);
+    const alunos = lerAlunos(caminhoPastaAlunos);
     assert.equal(alunos.length, 1, 'apenas o aluno valido deveria ser lido');
     assert.equal(alunos[0].nome, 'Sergio Ricardo Feitosa');
   } finally {
