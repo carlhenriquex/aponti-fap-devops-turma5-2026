@@ -103,17 +103,17 @@ function gerarTabela(alunos) {
  * podem ser utilizados diretórios e arquivos temporários,
  * evitando alterações nos arquivos reais do projeto.
  *
- * @param {string} pastaAlunos
+ * @param {string} caminhoPastaAlunos
  * @param {string} readmePath
  * @returns {{ alunos: Array<Object>, tabela: string, total: number }}
  */
 function atualizarReadme(
-  pastaAlunos = path.join(__dirname, "../alunos"),
+  caminhoPastaAlunos = path.join(__dirname, "../alunos"),
   readmePath = path.join(__dirname, "../README.md")
 ) {
   const alunos = ordenarAlunos(
     removerDuplicados(
-      lerAlunos(pastaAlunos)
+      lerAlunos(caminhoPastaAlunos)
     )
   );
 
