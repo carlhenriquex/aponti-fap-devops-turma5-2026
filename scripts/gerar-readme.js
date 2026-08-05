@@ -64,7 +64,7 @@ function gerarTabela(alunos) {
   return tabela;
 }
 
-function atualizarReadme() {
+function atualizarReadme(pastaAlunos, readmePath) {
   const alunos = ordenarAlunos(removerDuplicados(lerAlunos(pastaAlunos)));
   const tabela = gerarTabela(alunos);
 
@@ -97,7 +97,7 @@ Total de alunos cadastrados: ${alunos.length}
 
 if (require.main === module) {
   try {
-    atualizarReadme();
+    atualizarReadme(pastaAlunos, readmePath);
   } catch (erro) {
     console.error(erro.message);
     process.exit(1);

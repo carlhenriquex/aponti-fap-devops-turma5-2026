@@ -1,0 +1,9 @@
+Os testes de fumaça (smoke tests) verificam rapidamente se as funcionalidades essenciais do sistema estão
+operacionais antes de avançar para validações mais profundas, servindo como um filtro inicial para evitar
+retrabalho. Já os testes de regressão garantem que alterações recentes no código não tenham quebrado
+funcionalidades já existentes, sendo especialmente importantes após correções de bugs ou novas implementações.
+Por fim, os testes de sanidade (sanity tests) são mais pontuais e focados, usados para confirmar rapidamente que
+uma funcionalidade específica ou correção pontual funciona como esperado, sem a necessidade de uma bateria
+completa de testes. Juntos, esses três tipos formam uma estratégia complementar: fumaça para viabilidade geral,
+sanidade para verificações rápidas e direcionadas, e regressão para garantir estabilidade contínua do sistema
+como um todo.
