@@ -1,0 +1,69 @@
+# Nome exibido na aba "Actions" do repositório.
+name: Pipeline 3 - Triagem automática de Issues
+
+# Define o evento que inicia a pipeline.
+# A execução acontece somente quando uma nova Issue é aberta.
+on:
+  issues:
+    types:
+      - opened
+
+# Aplica o princípio do menor privilégio:
+# - contents: read permite somente a leitura do repositório;
+# - issues: write permite criar labels, comentar e atribuir responsáveis.
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  triagem-automatica:
+    # Nome amigável exibido durante a execução do job.
+    name: Adicionar label, agradecer e atribuir responsável
+
+    # Máquina virtual Linux disponibilizada pelo GitHub.
+    runs-on: ubuntu-latest
+
+    steps:
+      # A opção --force garante que a label seja criada caso não exista
+      # ou atualizada caso já exista no repositório.
+      - name: Criar ou atualizar a label triagem
+        env:
+          # Token temporário criado automaticamente pelo GitHub Actions.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # Repositório em que a Issue foi aberta, no formato dono/repositorio.
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh label create "triagem" \
+            --color "FBCA04" \
+            --description "Issue aguardando análise inicial" \
+            --force
+
+      # Adiciona a label e atribui a Issue ao proprietário do repositório.
+      # Dessa forma, funciona tanto no fork quanto no repositório principal.
+      - name: Adicionar label e atribuir responsável
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+
+          # Número da Issue obtido automaticamente do evento.
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+
+          # Usuário proprietário do repositório atual.
+          RESPONSAVEL: ${{ github.repository_owner }}
+        run: |
+          gh issue edit "$ISSUE_NUMBER" \
+            --add-label "triagem" \
+            --add-assignee "$RESPONSAVEL"
+
+      # Publica uma resposta automática mencionando o autor e o responsável.
+      - name: Enviar agradecimento automático
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          AUTOR: ${{ github.event.issue.user.login }}
+          RESPONSAVEL: ${{ github.repository_owner }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" \
+            --body "Olá @$AUTOR! Obrigado por abrir esta Issue. Ela recebeu a label **triagem** e foi atribuída a @$RESPONSAVEL para análise inicial. Em breve teremos um retorno."
