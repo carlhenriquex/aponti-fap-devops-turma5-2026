@@ -1,12 +1,22 @@
 # Nome exibido na aba "Actions" do repositório.
 name: Pipeline 3 - Triagem automática de Issues
 
-# Define o evento que inicia a pipeline.
-# A execução acontece somente quando uma nova Issue é aberta.
+# Define os eventos que iniciam a pipeline.
 on:
+  # Execução automática quando uma nova Issue é aberta.
   issues:
     types:
       - opened
+
+  # Permite executar a triagem manualmente pela aba Actions, informando
+  # o número de uma Issue já existente. Necessário em forks, onde o
+  # GitHub pode não entregar o evento "issues" ao Actions.
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Número da Issue a triar"
+        required: true
+        type: string
 
 # Aplica o princípio do menor privilégio:
 # - contents: read permite somente a leitura do repositório;
@@ -46,8 +56,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
 
-          # Número da Issue obtido automaticamente do evento.
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          # Número da Issue obtido do evento ou do input da execução manual.
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
 
           # Usuário proprietário do repositório atual.
           RESPONSAVEL: ${{ github.repository_owner }}
@@ -61,9 +71,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
           AUTOR: ${{ github.event.issue.user.login }}
           RESPONSAVEL: ${{ github.repository_owner }}
         run: |
+          # Na execução manual o evento não traz o autor da Issue,
+          # então ele é consultado diretamente pela CLI do GitHub.
+          if [ -z "$AUTOR" ]; then
+            AUTOR=$(gh issue view "$ISSUE_NUMBER" --json author --jq .author.login)
+          fi
+
           gh issue comment "$ISSUE_NUMBER" \
             --body "Olá @$AUTOR! Obrigado por abrir esta Issue. Ela recebeu a label **triagem** e foi atribuída a @$RESPONSAVEL para análise inicial. Em breve teremos um retorno."
