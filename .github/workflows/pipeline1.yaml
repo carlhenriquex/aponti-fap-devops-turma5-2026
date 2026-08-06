@@ -21,9 +21,6 @@ on:
       - '.github/workflows/testes.yaml'
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   smoke:
     name: Smoke
