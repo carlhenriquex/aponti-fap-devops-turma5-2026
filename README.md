@@ -46,6 +46,7 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 | <img src="https://github.com/ph95583faculdade-maker.png" width="50"> | Pedro Henrique | [@ph95583faculdade-maker](https://github.com/ph95583faculdade-maker) | Recife | [Perfil](https://www.linkedin.com/in/pedro-h-lima) |
 | <img src="https://github.com/PedroLuiz02.png" width="50"> | Pedro Luiz | [@PedroLuiz02](https://github.com/PedroLuiz02) | Recife | [Perfil](www.linkedin.com/in/pedroluiz02) |
 | <img src="https://github.com/ricardosantanadev4.png" width="50"> | Ricardo Santana | [@ricardosantanadev4](https://github.com/ricardosantanadev4) | Recife | [Perfil](https://www.linkedin.com/in/ricardo-santana-08b91829b/) |
+| <img src="https://github.com/SergioFeitosaa.png" width="50"> | Sérgio Feitosa | [@SergioFeitosaa](https://github.com/SergioFeitosaa) | Recife | [Perfil](https://www.linkedin.com/in/sergiofeitosa2/) |
 | <img src="https://github.com/talescavalcanti.png" width="50"> | Tales Cavalcanti | [@talescavalcanti](https://github.com/talescavalcanti) | Jaboatão dos Guararapes | [Perfil](https://linkedin.com/in/tales-cavalcantii) |
 | <img src="https://github.com/victorjls21.png" width="50"> | Victor Julius | [@victorjls21](https://github.com/victorjls21) | Olinda | [Perfil](https://linkedin.com/in/victor-julius) |
 | <img src="https://github.com/VitorJunior60.png" width="50"> | Vitor Marques | [@VitorJunior60](https://github.com/VitorJunior60) | Recife | [Perfil](www.linkedin.com/in/vitor-marques-3b1098368) |
@@ -55,8 +56,8 @@ Após o merge, seu nome será adicionado automaticamente à lista de integrantes
 ## Estatísticas
 
 <!-- ESTATISTICAS-INICIO -->
-Total de alunos cadastrados: 29
+Total de alunos cadastrados: 30
 
-Última atualização: 26/07/2026, 10:24
+Última atualização: 06/08/2026, 09:05
 
 <!-- ESTATISTICAS-FIM -->
