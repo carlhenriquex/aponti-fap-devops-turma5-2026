@@ -1,0 +1,92 @@
+name: Atualizar README (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_destino:
+        description: 'Branch onde o README sera atualizado'
+        required: true
+        default: 'main'
+        type: string
+      dry_run:
+        description: 'Apenas simular. Mostra o diff sem commitar'
+        required: false
+        default: false
+        type: boolean
+      mensagem_commit:
+        description: 'Mensagem do commit gerado'
+        required: false
+        default: 'docs: atualizar lista da turma'
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-readme
+  cancel-in-progress: false
+
+jobs:
+  atualizar-readme:
+    name: Gerar e publicar README
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch_destino }}
+          fetch-depth: 0
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Registrar parametros da execucao
+        run: |
+          echo "### Execucao manual do gerador de README" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Solicitado por: @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Branch destino: ${{ inputs.branch_destino }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Modo simulacao: ${{ inputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Guardar versao anterior
+        run: cp README.md /tmp/README.antes.md
+
+      - name: Executar gerador
+        run: node scripts/gerar-readme.js
+
+      - name: Calcular diferencas
+        id: diff
+        run: |
+          if diff -q /tmp/README.antes.md README.md > /dev/null; then
+            echo "houve_mudanca=false" >> $GITHUB_OUTPUT
+            echo "Nenhuma alteracao detectada no README." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "houve_mudanca=true" >> $GITHUB_OUTPUT
+            {
+              echo ""
+              echo "#### Diferencas encontradas"
+              echo '```diff'
+              diff -u /tmp/README.antes.md README.md || true
+              echo '```'
+            } >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Publicar alteracoes
+        if: steps.diff.outputs.houve_mudanca == 'true' && inputs.dry_run == false
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "${{ inputs.mensagem_commit }}"
+          git push origin HEAD:${{ inputs.branch_destino }}
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "README atualizado e publicado em ${{ inputs.branch_destino }}." >> $GITHUB_STEP_SUMMARY
+
+      - name: Aviso de simulacao
+        if: steps.diff.outputs.houve_mudanca == 'true' && inputs.dry_run == true
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Modo simulacao ativo. Nenhum commit foi realizado." >> $GITHUB_STEP_SUMMARY
