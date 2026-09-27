@@ -6,7 +6,7 @@ on:
       - main
       - professor
     paths:
-      - 'alunos/**'
+      - "alunos/**"
 
 permissions:
   contents: write

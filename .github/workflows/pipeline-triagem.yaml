@@ -1,0 +1,48 @@
+name: Pipeline 3 - Triagem automática de Issues
+
+on:
+  issues:
+    types:
+      - opened
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  triagem-automatica:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Criar ou atualizar a label triagem
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh label create "triagem" \
+            --color "FBCA04" \
+            --description "Issue aguardando análise inicial" \
+            --force
+
+      - name: Adicionar label e responsável
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          RESPONSAVEL: ${{ github.repository_owner }}
+        run: |
+          gh issue edit "$ISSUE_NUMBER" \
+            --add-label "triagem" \
+            --add-assignee "$RESPONSAVEL"
+
+      - name: Comentar na issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          AUTOR: ${{ github.event.issue.user.login }}
+          RESPONSAVEL: ${{ github.repository_owner }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" \
+            --body "Olá @$AUTOR! Obrigado por abrir esta issue. Ela recebeu a label triagem e foi atribuída a @$RESPONSAVEL para análise."

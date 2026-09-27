@@ -1,0 +1,90 @@
+name: Testes por categoria
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/testes.yaml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/testes.yaml'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    name: Smoke
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar smoke tests
+        run: npx jest --runInBand tests/gerar-readme.test.js --testNamePattern='T01|T10'
+        # Apenas T01 e T10 foram escolhidos como exemplos de testes de smoke.
+
+  sanidade:
+    name: Sanidade
+    runs-on: ubuntu-latest
+    needs: smoke
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes de sanidade
+        run: npx jest --runInBand tests/gerar-readme.test.js --testNamePattern='T09'
+        # T09 foi escolhido, mas qualquer outro teste que valida algo especifico poderia ser usado.
+
+  regressao:
+    name: Regressão
+    runs-on: ubuntu-latest
+    needs: [smoke, sanidade]
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    # A execução de testes de regressão é feita apenas em caso de push na main ou quando o workflow é disparado manualmente.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes de regressão
+        run: npx jest --runInBand tests/gerar-readme.test.js
+        # Todos os testes podem ser executados para garantir que alterações não introduziram falhas.
